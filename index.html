@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="GlassWire - Ethereal news platform exploring technology, culture, and modern web design through frosted glass aesthetics.">
+  <meta name="keywords" content="glassmorphism, news, technology, design, web development, UI trends">
+  <meta name="author" content="GlassWire News">
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:title" content="GlassWire · Ethereal News & Glassmorphism Design">
+  <meta property="og:description" content="Frosted glass aesthetics reshaping news platforms and editorial layouts.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>GlassWire · Ethereal News | Glassmorphism Modern UI</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 10%, #e9eef2 0%, #d9e0e7 70%, #bdc9d4 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      position: relative;
+      transition: background 0.4s ease, color 0.3s ease;
+    }
+
+    /* Dark mode class */
+    body.dark-mode {
+      background: radial-gradient(circle at 30% 20%, #1e2530 0%, #0f141a 90%);
+    }
+
+    body.dark-mode .glass-nav,
+    body.dark-mode .soft-card,
+    body.dark-mode footer,
+    body.dark-mode .newsletter-section {
+      background: rgba(20, 25, 35, 0.7);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #e0e4ea;
+    }
+
+    body.dark-mode .soft-card h3,
+    body.dark-mode .featured-content h1,
+    body.dark-mode .logo,
+    body.dark-mode .nav-links a {
+      color: #f0f3f8;
+    }
+
+    body.dark-mode .soft-card p,
+    body.dark-mode .meta,
+    body.dark-mode footer a {
+      color: #cbd5e1;
+    }
+
+    body.dark-mode .nav-links a {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    body.dark-mode .nav-links a:hover {
+      background: rgba(255,255,255,0.25);
+      color: white;
+    }
+
+    body.dark-mode .category-tag {
+      background: rgba(0,0,0,0.4);
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* ---------- GLASS NAV ---------- */
+    .glass-nav {
+      position: sticky;
+      top: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 10px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
+      border-radius: 60px;
+      padding: 16px 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255,255,255,0.6);
+      z-index: 20;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #0b1c2e;
+      background: rgba(255,255,255,0.4);
+      padding: 5px 18px;
+      border-radius: 40px;
+      backdrop-filter: blur(15px);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a2634;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.25s;
+      border: 1px solid rgba(255,255,255,0.6);
+      display: inline-block;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(255,255,255,0.75);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px -8px rgba(0,0,0,0.2);
+      border-color: white;
+    }
+
+    /* Dark Mode Toggle */
+    .dark-toggle {
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 40px;
+      padding: 10px 16px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      color: #1e293b;
+    }
+
+    body.dark-mode .dark-toggle {
+      background: rgba(255,255,255,0.15);
+      color: #facc15;
+    }
+
+    /* Hamburger menu button */
+    .hamburger {
+      display: none;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.7);
+      font-size: 1.8rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      color: #0b1c2e;
+    }
+
+    /* ---------- NEWS GRID ---------- */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 28px;
+    }
+
+    .featured-card {
+      position: relative;
+      border-radius: 36px;
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      align-items: flex-end;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 30px 50px -20px rgba(0,0,0,0.25);
+      transition: 0.3s;
+    }
+
+    .featured-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1000&q=85') center/cover;
+      z-index: -1;
+      opacity: 0.9;
+    }
+
+    .featured-content {
+      position: relative;
+      z-index: 2;
+      padding: 38px 34px;
+      color: white;
+    }
+
+    .category-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(16px);
+      padding: 8px 18px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .featured-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    }
+
+    .side-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .soft-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 28px;
+      padding: 26px 24px;
+      transition: 0.3s;
+    }
+
+    .soft-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      font-size: 0.8rem;
+    }
+
+    /* Newsletter */
+    .newsletter-section {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(30px);
+      border-radius: 30px;
+      padding: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.7);
+      margin-top: 10px;
+    }
+
+    .newsletter-input {
+      display: flex;
+      gap: 12px;
+    }
+
+    .newsletter-input input {
+      padding: 14px 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      width: 250px;
+    }
+
+    .newsletter-input button {
+      background: #0b1c2e;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 14px 25px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(25px);
+      border-radius: 30px;
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border: 1px solid rgba(255,255,255,0.6);
+      margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .news-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; width: 100%; }
+      .nav-links.show { display: flex; }
+      .hamburger { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <main class="main-wrapper">
+    <nav class="glass-nav" aria-label="Main navigation">
+      <div class="logo"><span>📰</span> GlassWire</div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div class="nav-controls">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#" class="active" aria-current="page">World</a></li>
+          <li><a href="#">Tech</a></li>
+          <li><a href="#">Business</a></li>
+          <li><a href="#">Culture</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <button class="dark-toggle" id="darkModeToggle" aria-label="Switch to dark mode">🌙</button>
+      </div>
+    </nav>
+
+    <div class="news-grid">
+      <article class="featured-card" aria-labelledby="featuredTitle">
+        <div class="featured-content">
+          <span class="category-tag">🔮 Technology</span>
+          <h1 id="featuredTitle">The Future of Glassmorphism in Modern Web Design</h1>
+          <p>How frosted glass aesthetics are reshaping news platforms and editorial layouts.</p>
+        </div>
+      </article>
+
+      <aside class="side-cards" aria-label="Trending stories">
+        <div class="soft-card"><h3>Apple Unveils New Vision Pro UI Kit</h3><p>Spatial glass design for developers.</p><div class="meta"><span>🔵 TechCrunch</span><span>4 min</span></div></div>
+        <div class="soft-card"><h3>Why Soft UI is the New Standard</h3><p>Editors embrace blur and depth.</p><div class="meta"><span>🟠 Medium</span><span>6 min</span></div></div>
+        <div class="soft-card"><h3>Minimalism vs Glass: Design Battle</h3><p>Readability and speed debate.</p><div class="meta"><span>⚫ Verge</span><span>3 min</span></div></div>
+      </aside>
+    </div>
+
+    <section class="newsletter-section" aria-label="Newsletter subscription">
+      <h2 style="font-family: 'Playfair Display', serif;">📬 Stay informed</h2>
+      <div class="newsletter-input">
+        <input type="email" placeholder="your@email.com" aria-label="Email address">
+        <button>Subscribe</button>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 GlassWire</span>
+      <div style="display: flex; gap: 20px;">
+        <a href="#" style="text-decoration: none; color: inherit;">Privacy</a>
+        <a href="#" style="text-decoration: none; color: inherit;">Terms</a>
+        <a href="#" style="text-decoration: none; color: inherit;">Twitter</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const body = document.body;
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    // Dark Mode Toggle
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.innerHTML = isDark ? '☀️' : '🌙';
+      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+
+    // Mobile Hamburger Menu
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      const expanded = navLinks.classList.contains('show');
+      hamburger.setAttribute('aria-expanded', expanded);
+      hamburger.innerHTML = expanded ? '✕' : '☰';
+    });
+
+    // Active class for nav links (demo)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
